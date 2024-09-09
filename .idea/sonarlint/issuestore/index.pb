@@ -32,3 +32,13 @@ U
 %.mvn/wrapper/maven-wrapper.properties,3/2/32e074f71d16c1e88ac02aa83592ca6ad1fd98a8
 e
 5src/main/java/com/challenge/ride/RideApplication.java,f/8/f8e62a15681965d656db8681db497612c1e29f4f
+c
+3src/main/java/com/challenge/ride/entity/Driver.java,3/f/3f3816f30c31948bb8e15b877715f2acbfd53669
+e
+5src/main/java/com/challenge/ride/entity/Location.java,9/b/9b8ef9ead0f8d6e3756f3153bfdfb446da0a7c46
+g
+7src/main/java/com/challenge/ride/model/RideRequest.java,3/a/3a03e50e8795fb1c58784ca18914358158d61065
+q
+Asrc/main/java/com/challenge/ride/repository/DriverRepository.java,4/2/4266675b828c059ec0637b01439cd516f9a40b31
+o
+?src/main/java/com/challenge/ride/controller/RideController.java,4/3/43ac8fa6d18f2294d56d41b17e60775afd782ffa
