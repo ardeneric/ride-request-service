@@ -1,13 +1,9 @@
 
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-7
-HELP.md,1/a/1a273f73b7a477b0745593641bd708a6182c7ad5
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-8
-ride.iml,1/d/1dd287d4cb2f51deff4d24839ab0eb21ef4db3f2
 j
 :src/test/java/com/challenge/ride/RideApplicationTests.java,2/b/2b74cb18c52f384240fc9da038f75fdbe1040314
 8
@@ -42,3 +38,11 @@ q
 Asrc/main/java/com/challenge/ride/repository/DriverRepository.java,4/2/4266675b828c059ec0637b01439cd516f9a40b31
 o
 ?src/main/java/com/challenge/ride/controller/RideController.java,4/3/43ac8fa6d18f2294d56d41b17e60775afd782ffa
+i
+9src/main/java/com/challenge/ride/config/RabbitConfig.java,5/c/5cde649d9f451c25f4050f10c37444cc252e8b3c
+r
+Bsrc/main/java/com/challenge/ride/listener/RideRequestListener.java,8/0/809e9f7f1559469c6b80ef1f85fa7d8e3465f117
+p
+@src/main/java/com/challenge/ride/service/RideRequestService.java,9/b/9b58fdc2563bfdb951c0e260221996651954b2fe
+p
+@src/main/java/com/challenge/ride/config/DatabaseInitializer.java,f/2/f2a4f172d04e3c04b34df5b9be4c280ac2ace1b6
