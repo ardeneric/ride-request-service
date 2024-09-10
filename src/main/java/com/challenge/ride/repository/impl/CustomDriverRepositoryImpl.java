@@ -1,6 +1,7 @@
 package com.challenge.ride.repository.impl;
 
 import com.challenge.ride.entity.Driver;
+import com.challenge.ride.entity.Ride;
 import com.challenge.ride.repository.CustomDriverRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.geo.Point;
@@ -28,4 +29,10 @@ public class CustomDriverRepositoryImpl implements CustomDriverRepository {
     public Driver save(Driver driver, String collection) {
         return mongoTemplate.save(driver, "nearest-drivers");
     }
+
+    @Override
+    public Ride findById(Integer rideId) {
+        return mongoTemplate.findById(rideId, Ride.class);
+    }
+
 }

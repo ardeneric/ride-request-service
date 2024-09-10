@@ -56,3 +56,11 @@ w
 Gsrc/main/java/com/challenge/ride/repository/CustomDriverRepository.java,8/1/819fe6f6808a0b5e69e7deb567cda8197e1ad8fe
 €
 Psrc/main/java/com/challenge/ride/repository/impl/CustomDriverRepositoryImpl.java,f/6/f67b476bbaf6681f8e9adfe80188df9031f63a2b
+g
+7src/main/java/com/challenge/ride/entity/RideResult.java,5/1/51d2aa012f4bd79022e4139e6ed60d8fc8a191f5
+o
+?src/main/java/com/challenge/ride/repository/RideRepository.java,1/7/171177610fffdfcda6f4b978f0e216aa911e351c
+a
+1src/main/java/com/challenge/ride/entity/Ride.java,6/3/63d58e3787b90344db0db2462abab4a862c0a6ea
+w
+Gsrc/main/java/com/challenge/ride/exception/DriverNotFoundException.java,6/a/6ac210c598a596dbd6844777d900da6e29f1e07e

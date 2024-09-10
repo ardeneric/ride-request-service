@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.testcontainers.containers.MongoDBContainer;
@@ -47,14 +48,15 @@ class RideRequestServiceIntegrationTest {
         System.setProperty("spring.rabbitmq.port", rabbitMQContainer.getMappedPort(5672).toString());
         System.setProperty("spring.rabbitmq.username", rabbitMQContainer.getAdminUsername());
         System.setProperty("spring.rabbitmq.password", rabbitMQContainer.getAdminPassword());
+
     }
 
     @Test
     void testSubmitRideRequest() throws Exception {
-        final RideRequest rideRequest = RideRequest.builder().passengerLocation(new Location(51.5074, -0.1276)).build();
+        final RideRequest rideRequest = RideRequest.builder().passengerLocation(new Location(32.7777, -0.2260)).build();
         mockMvc.perform(MockMvcRequestBuilders.post("/api/rides")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(rideRequest)))
-                .andExpect(status().isOk());
+                .andExpect(status().isAccepted());
     }
 }

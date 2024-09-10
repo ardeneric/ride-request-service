@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class RideRequest {
+    private int rideId;
     private Location passengerLocation;
 }
