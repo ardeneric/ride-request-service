@@ -2,34 +2,38 @@ package com.challenge.ride.service;
 
 import com.challenge.ride.entity.Driver;
 import com.challenge.ride.entity.Location;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.challenge.ride.model.RideRequest;
+import com.challenge.ride.repository.CustomDriverRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.geo.Point;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.util.List;
-
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Slf4j
 public class RideRequestService {
+    public static final String NEAREST_DRIVERS = "nearest-drivers";
 
-    private final MongoTemplate mongoTemplate;
+    private final CustomDriverRepository customDriverRepository;
 
-    public void findNearestDriver(Location passengerLocation, double maxDistance) {
+    private final RabbitTemplate rabbitTemplate;
+
+    public void publishRideRequest(RideRequest request) {
+        rabbitTemplate.convertAndSend("rideRequests", request);
+    }
+
+    public Driver findNearestDriver(Location passengerLocation) {
+        log.info("Finding nearest driver from {} ", passengerLocation);
         Point passengerPoint = new Point(passengerLocation.getLongitude(), passengerLocation.getLatitude());
 
-        Query query = new Query();
-        query.addCriteria(Criteria.where("available").is(true)
-            .and("location").near(passengerPoint).maxDistance(maxDistance));
-
-        Driver nearestDriver = mongoTemplate.findOne(query, Driver.class, "drivers");
+        Driver nearestDriver = customDriverRepository.findDriverNearLocation(passengerPoint,1000);
 
         if (!ObjectUtils.isEmpty(nearestDriver)) {
-            mongoTemplate.save(nearestDriver, "nearest-drivers");
+            customDriverRepository.save(nearestDriver, NEAREST_DRIVERS);
         }
+        return nearestDriver;
     }
 }

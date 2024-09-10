@@ -3,17 +3,24 @@ package com.challenge.ride.listener;
 import com.challenge.ride.model.RideRequest;
 import com.challenge.ride.service.RideRequestService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
+@Slf4j
 public class RideRequestListener {
 
     private final RideRequestService rideRequestService;
 
     @RabbitListener(queues = "rideRequests")
     public void handleRideRequest(RideRequest rideRequest) {
-        rideRequestService.findNearestDriver(rideRequest.getPassengerLocation(), 5000);
+        log.info("Received ride request :: {} ", rideRequest);
+        try {
+            rideRequestService.findNearestDriver(rideRequest.getPassengerLocation());
+        } catch (Exception ex) {
+            log.error("Error occurred :: ", ex);
+        }
     }
 }

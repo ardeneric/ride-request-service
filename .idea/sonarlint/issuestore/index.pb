@@ -12,14 +12,10 @@ j
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 4
 mvnw,5/d/5d837c4ed85ecaaf932c506e80ff5d7b9f3d590d
-Å
-Q.idea/sonarlint/securityhotspotstore/1/a/1a273f73b7a477b0745593641bd708a6182c7ad5,2/0/20eaccc7848bd96a3c33f3c3c385dce3abefb100
 S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
-w
-G.idea/sonarlint/issuestore/1/a/1a273f73b7a477b0745593641bd708a6182c7ad5,d/8/d8b366b881b9b013c97b3b87cc0f3b2b80eddd36
 w
 G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
 Å
@@ -46,3 +42,17 @@ p
 @src/main/java/com/challenge/ride/service/RideRequestService.java,9/b/9b58fdc2563bfdb951c0e260221996651954b2fe
 p
 @src/main/java/com/challenge/ride/config/DatabaseInitializer.java,f/2/f2a4f172d04e3c04b34df5b9be4c280ac2ace1b6
+u
+Esrc/test/java/com/challenge/ride/service/RideRequestServiceTests.java,a/c/acbd7f94ca9b3dd159a63795d1a477e59e73b40d
+Ç
+Rsrc/test/java/com/challenge/ride/controller/RideRequestServiceIntegrationTest.java,3/3/337aa341dee58ae7f35d4ab0d83b4a8dac9f9bd9
+p
+@src/test/java/com/challenge/ride/config/EmbeddedMongoConfig.java,3/9/39a52731e22ec58d7ff087b8a70176684c7a8c13
+c
+3src/test/java/config/RabbitMQTestConfiguration.java,0/2/02614cb8b157f808162f99313ad5b64abf91bb22
+P
+ src/test/java/config/Config.java,3/5/358718b522862b22cb09d21ebf673602d270fa12
+w
+Gsrc/main/java/com/challenge/ride/repository/CustomDriverRepository.java,8/1/819fe6f6808a0b5e69e7deb567cda8197e1ad8fe
+Ä
+Psrc/main/java/com/challenge/ride/repository/impl/CustomDriverRepositoryImpl.java,f/6/f67b476bbaf6681f8e9adfe80188df9031f63a2b
