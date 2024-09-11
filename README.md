@@ -13,6 +13,10 @@ The **Ride Request Service** is a microservice designed to handle ride requests,
 - [Using the REST Endpoint](#using-the-rest-endpoint)
 - [Troubleshooting](#troubleshooting)
 
+### Working Branch
+- main
+
+
 ## Prerequisites
 
 Before running the application, ensure you have the following installed:
@@ -27,7 +31,7 @@ To run the Ride Request Service, follow these steps:
 1. **Clone the Repository**
 
    ```bash
-   git clone [<repository-url>](https://github.com/ardeneric/ride-request-service.git)
+   git clone https://github.com/ardeneric/ride-request-service.git
    cd /ride-request-service
    ```
 
@@ -56,7 +60,7 @@ To run the Ride Request Service, follow these steps:
 MongoDB is exposed on port `27017`. You can use a MongoDB client to connect to it using the following connection string:
 
 ```plaintext
-mongodb://localhost:27017/ride_db
+mongodb://localhost:27017/ride-request-db
 ```
 
 You can also use MongoDB Compass or any other MongoDB management tool to view and interact with the data.
