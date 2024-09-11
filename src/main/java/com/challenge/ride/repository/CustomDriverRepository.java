@@ -7,5 +7,4 @@ import org.springframework.data.geo.Point;
 public interface CustomDriverRepository {
     Driver findDriverNearLocation(Point location, double maxDistance);
     Driver save(Driver driver, String collection);
-    Ride findById(Integer rideId);
 }

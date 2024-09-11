@@ -1,7 +1,8 @@
 package com.challenge.ride.service;
 
+import com.challenge.ride.config.RabbitConfig;
 import com.challenge.ride.entity.Driver;
-import com.challenge.ride.entity.Location;
+import com.challenge.ride.model.Location;
 import com.challenge.ride.entity.Ride;
 import com.challenge.ride.exception.DriverNotFoundException;
 import com.challenge.ride.model.RideRequest;
@@ -16,6 +17,8 @@ import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -27,7 +30,7 @@ public class RideRequestService {
     private final RabbitTemplate rabbitTemplate;
 
     public void publishRideRequest(RideRequest request) {
-        rabbitTemplate.convertAndSend("rideRequests", request);
+        rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, RabbitConfig.ROUTING_KEY, request);
     }
 
     @Cacheable(value = "nearestDrivers", key = "#rideId")
@@ -35,17 +38,19 @@ public class RideRequestService {
         log.info("Searching for nearest driver from {} ", passengerLocation);
         Point passengerPoint = new Point(passengerLocation.getLongitude(), passengerLocation.getLatitude());
 
-        Driver nearestDriver = customDriverRepository.findDriverNearLocation(passengerPoint,maxDistance);
+        Driver nearestDriver = customDriverRepository.findDriverNearLocation(passengerPoint, maxDistance);
 
         if (!ObjectUtils.isEmpty(nearestDriver)) {
             return rideRepository.save(new Ride(rideId, nearestDriver)).getDriver();
-        }else{
+        } else {
             throw new DriverNotFoundException("Driver not found");
         }
     }
 
     @Cacheable(value = "nearestDrivers", key = "#rideId")
-    public Ride findNearestDriver(Integer rideId){
-        return customDriverRepository.findById(rideId);
+    public Optional<Driver> findNearestDriver(Integer rideId) {
+        return Optional.ofNullable(rideRepository.findByRideId(rideId))
+                .map(Ride::getDriver);
+
     }
 }

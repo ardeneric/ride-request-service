@@ -1,7 +1,8 @@
 package com.challenge.ride.service;
 
+import com.challenge.ride.config.RabbitConfig;
 import com.challenge.ride.entity.Driver;
-import com.challenge.ride.entity.Location;
+import com.challenge.ride.model.Location;
 import com.challenge.ride.entity.Ride;
 import com.challenge.ride.model.RideRequest;
 import com.challenge.ride.repository.CustomDriverRepository;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.geo.Point;
@@ -48,7 +48,7 @@ class RideRequestServiceTests {
 
         rideRequestService.publishRideRequest(rideRequest);
 
-        verify(rabbitTemplate, times(1)).convertAndSend("rideRequests", rideRequest);
+        verify(rabbitTemplate, times(1)).convertAndSend(RabbitConfig.EXCHANGE_NAME, RabbitConfig.ROUTING_KEY, rideRequest);
     }
 
     @Test

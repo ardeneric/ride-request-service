@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 public class Ride {
     @Id
+    private String id;
     private Integer rideId;
     private Driver driver;
 

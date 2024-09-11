@@ -64,3 +64,12 @@ a
 1src/main/java/com/challenge/ride/entity/Ride.java,6/3/63d58e3787b90344db0db2462abab4a862c0a6ea
 w
 Gsrc/main/java/com/challenge/ride/exception/DriverNotFoundException.java,6/a/6ac210c598a596dbd6844777d900da6e29f1e07e
+:
+
+Dockerfile,6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4
+C
+docker-compose.yaml,e/f/ef8def03dc8f162799089e9b5f4321201c8810d5
+j
+:src/main/java/com/challenge/ride/config/SwaggerConfig.java,4/b/4b1e86d81e21a32c01a1f7b93a15ddad60a6e0ca
+d
+4src/main/java/com/challenge/ride/model/Location.java,9/3/9342f6cac3ce3556c5cd7c97d1b206d07209ccf6

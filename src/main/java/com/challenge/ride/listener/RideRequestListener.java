@@ -1,5 +1,6 @@
 package com.challenge.ride.listener;
 
+import com.challenge.ride.config.RabbitConfig;
 import com.challenge.ride.model.RideRequest;
 import com.challenge.ride.service.RideRequestService;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ public class RideRequestListener {
 
     private final RideRequestService rideRequestService;
 
-    @RabbitListener(queues = "rideRequests")
+    @RabbitListener(queues = RabbitConfig.QUEUE_NAME)
     public void handleRideRequest(RideRequest rideRequest) {
         log.info("Received ride request :: {} ", rideRequest);
         try {

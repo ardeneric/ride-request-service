@@ -1,4 +1,4 @@
-package com.challenge.ride.entity;
+package com.challenge.ride.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
