@@ -4,37 +4,35 @@ import com.challenge.ride.entity.Driver;
 import com.challenge.ride.model.Location;
 import com.challenge.ride.model.RideRequest;
 import com.challenge.ride.service.RideRequestService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.reactive.server.WebTestClient;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.containers.RabbitMQContainer;
 import org.testcontainers.utility.DockerImageName;
+import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureWebTestClient
 @ActiveProfiles("test")
 @Slf4j
 class RideRequestServiceIntegrationTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private WebTestClient webTestClient;
 
     @MockBean
     private RideRequestService rideRequestService;
@@ -63,10 +61,11 @@ class RideRequestServiceIntegrationTest {
     @Test
     void testSubmitRideRequest() throws Exception {
         final RideRequest rideRequest = RideRequest.builder().rideId(1).passengerLocation(new Location(32.7777, -0.2260)).build();
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/rides")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(rideRequest)))
-                .andExpect(status().isAccepted());
+        webTestClient.post().uri("/api/rides")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(Mono.just(rideRequest), RideRequest.class)
+                .exchange()
+                .expectStatus().isAccepted();
     }
 
     @Test
@@ -75,18 +74,21 @@ class RideRequestServiceIntegrationTest {
         mockDriver.setAvailable(true);
         Mockito.when(rideRequestService.findNearestDriver(1)).thenReturn(Optional.of(mockDriver));
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/rides/1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.available").value(true));
+        webTestClient.get().uri("/api/rides/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.available").isEqualTo(true);
     }
 
     @Test
     void testGetNearestDriver_NotFound() throws Exception {
         Mockito.when(rideRequestService.findNearestDriver(1)).thenReturn(Optional.empty());
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/rides/1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
+        webTestClient.get().uri("/api/rides/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isNotFound();
     }
 }

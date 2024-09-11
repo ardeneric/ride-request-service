@@ -1,7 +1,6 @@
 package com.challenge.ride.controller;
 
 import com.challenge.ride.entity.Driver;
-import com.challenge.ride.entity.Ride;
 import com.challenge.ride.model.RideRequest;
 import com.challenge.ride.service.RideRequestService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,9 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -23,7 +20,6 @@ import java.util.Optional;
 @RequestMapping("/api/rides")
 @RequiredArgsConstructor
 @Tag(name = "Ride Request Controller", description = "APIs to manage ride requests and find nearest drivers.")
-@Slf4j
 public class RideController {
 
     private final RideRequestService rideRequestService;
