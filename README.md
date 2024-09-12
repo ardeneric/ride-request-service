@@ -95,7 +95,7 @@ RabbitMQ is exposed on ports `5672` (AMQP) and `15672` (Management UI).
 **Request Body**:
 ```json
 {
-  "rideId": 3,
+  "riderId": 3,
   "passengerLocation": {
     "latitude": 32.7777,
     "longitude": -0.2260
@@ -109,10 +109,10 @@ RabbitMQ is exposed on ports `5672` (AMQP) and `15672` (Management UI).
 
 ### Get Nearest Driver
 
-**Endpoint**: `GET /api/rides/{rideId}`
+**Endpoint**: `GET /api/rides/{riderId}`
 
 **Path Parameter**:
-- `rideId`: The ID of the ride request.
+- `riderId`: The ID of the rider making the request.
 
 **Response**:
 - **Success**: Status `200 OK`, returns a `Driver` object.
@@ -187,6 +187,7 @@ RabbitMQ is exposed on ports `5672` (AMQP) and `15672` (Management UI).
 
 - SUBMIT NEW RIDE REQUEST
 <img width="950" alt="Screenshot 2024-09-12 at 3 51 36 AM" src="https://github.com/user-attachments/assets/a0e969e9-afa9-43bd-b10b-c228c148c410">
+
 
 - GET NEAREST DRIVER
 <img width="945" alt="Screenshot 2024-09-12 at 3 53 45 AM" src="https://github.com/user-attachments/assets/7f007594-96e6-4539-b64d-08d0b62fd961">
