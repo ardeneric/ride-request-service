@@ -59,7 +59,7 @@ class RideRequestServiceIntegrationTest {
     }
 
     @Test
-    void testSubmitRideRequest() throws Exception {
+    void testSubmitRideRequest() {
         final RideRequest rideRequest = RideRequest.builder().riderId(1).passengerLocation(new Location(32.7777, -0.2260)).build();
         webTestClient.post().uri("/api/rides")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -69,7 +69,7 @@ class RideRequestServiceIntegrationTest {
     }
 
     @Test
-    void testGetNearestDriver_Success() throws Exception {
+    void testGetNearestDriver_Success() {
         Driver mockDriver = new Driver();
         mockDriver.setAvailable(true);
         Mockito.when(rideRequestService.findNearestDriver(1)).thenReturn(Optional.of(mockDriver));
@@ -83,7 +83,7 @@ class RideRequestServiceIntegrationTest {
     }
 
     @Test
-    void testGetNearestDriver_NotFound() throws Exception {
+    void testGetNearestDriver_NotFound() {
         Mockito.when(rideRequestService.findNearestDriver(1)).thenReturn(Optional.empty());
 
         webTestClient.get().uri("/api/rides/1")
