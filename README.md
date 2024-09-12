@@ -2,10 +2,11 @@
 
 ## Overview
 
-The **Ride Request Service** is a microservice designed to handle ride requests, interact with MongoDB for data storage, and use RabbitMQ as a message broker. This service exposes REST endpoints for managing ride requests and finding the nearest driver.
+The **Ride Request Service** is a microservice designed to handle ride requests, interact with MongoDB for data storage, Caffeine for Caching and use RabbitMQ as a message broker. This service exposes REST endpoints for managing ride requests and finding the nearest driver.
 
 ## Table of Contents
 
+- [Assumptions](#assumptions)
 - [Prerequisites](#prerequisites)
 - [Running the Application](#running-the-application)
 - [Accessing MongoDB Data](#accessing-mongodb-data)
