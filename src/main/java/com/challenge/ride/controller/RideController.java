@@ -35,15 +35,15 @@ public class RideController {
         return ResponseEntity.accepted().body("Searching for driver...");
     }
 
-    @GetMapping("/{rideId}")
+    @GetMapping("/{riderId}")
     @Operation(summary = "Get nearest driver", description = "Fetches the nearest available driver for the ride request.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Nearest driver found",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = Driver.class))),
             @ApiResponse(responseCode = "404", description = "No driver found", content = @Content)
     })
-    public ResponseEntity<Driver> getNearestDriver(@PathVariable Integer rideId) {
-        Optional<Driver> result = rideRequestService.findNearestDriver(rideId);
+    public ResponseEntity<Driver> getNearestDriver(@PathVariable Integer riderId) {
+        Optional<Driver> result = rideRequestService.findNearestDriver(riderId);
         return result.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

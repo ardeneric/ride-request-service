@@ -17,6 +17,7 @@ import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -33,23 +34,24 @@ public class RideRequestService {
         rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, RabbitConfig.ROUTING_KEY, request);
     }
 
-    @Cacheable(value = "nearestDrivers", key = "#rideId")
-    public Driver findNearestDriver(Integer rideId, Location passengerLocation) {
+    @Cacheable(value = "nearestDrivers", key = "#riderId")
+    public Driver findNearestDriver(Integer riderId, Location passengerLocation) {
         log.info("Searching for nearest driver from {} ", passengerLocation);
         Point passengerPoint = new Point(passengerLocation.getLongitude(), passengerLocation.getLatitude());
 
         Driver nearestDriver = customDriverRepository.findDriverNearLocation(passengerPoint, maxDistance);
 
         if (!ObjectUtils.isEmpty(nearestDriver)) {
-            return rideRepository.save(new Ride(rideId, nearestDriver)).getDriver();
+            return rideRepository.save(new Ride(riderId, nearestDriver)).getDriver();
         } else {
             throw new DriverNotFoundException("Driver not found");
         }
     }
 
-    @Cacheable(value = "nearestDrivers", key = "#rideId")
-    public Optional<Driver> findNearestDriver(Integer rideId) {
-        return Optional.ofNullable(rideRepository.findByRideId(rideId))
+    @Cacheable(value = "nearestDrivers", key = "#riderId")
+    public Optional<Driver> findNearestDriver(Integer riderId) {
+        LocalDateTime tenMinutesAgo = LocalDateTime.now().minusMinutes(10);
+        return Optional.ofNullable(rideRepository.findByRiderIdBefore(riderId, tenMinutesAgo))
                 .map(Ride::getDriver);
 
     }

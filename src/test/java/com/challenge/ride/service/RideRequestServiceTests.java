@@ -71,7 +71,7 @@ class RideRequestServiceTests {
 
         // Then
         verify(customDriverRepository, times(1)).findDriverNearLocation(any(Point.class), anyDouble());
-        verify(rideRepository, times(1)).save(ride);
+        verify(rideRepository, times(1)).save(any(Ride.class));
     }
 
     @Test

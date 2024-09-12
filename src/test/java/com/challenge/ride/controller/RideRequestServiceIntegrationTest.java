@@ -60,7 +60,7 @@ class RideRequestServiceIntegrationTest {
 
     @Test
     void testSubmitRideRequest() throws Exception {
-        final RideRequest rideRequest = RideRequest.builder().rideId(1).passengerLocation(new Location(32.7777, -0.2260)).build();
+        final RideRequest rideRequest = RideRequest.builder().riderId(1).passengerLocation(new Location(32.7777, -0.2260)).build();
         webTestClient.post().uri("/api/rides")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Mono.just(rideRequest), RideRequest.class)

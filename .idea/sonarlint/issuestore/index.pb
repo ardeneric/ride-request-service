@@ -73,3 +73,5 @@ j
 :src/main/java/com/challenge/ride/config/SwaggerConfig.java,4/b/4b1e86d81e21a32c01a1f7b93a15ddad60a6e0ca
 d
 4src/main/java/com/challenge/ride/model/Location.java,9/3/9342f6cac3ce3556c5cd7c97d1b206d07209ccf6
+j
+:src/main/java/com/challenge/ride/config/OpenApiConfig.java,8/0/80faf5daf1dc60c2e37ce224daed9dd2974d0777

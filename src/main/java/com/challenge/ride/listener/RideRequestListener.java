@@ -19,7 +19,7 @@ public class RideRequestListener {
     public void handleRideRequest(RideRequest rideRequest) {
         log.info("Received ride request :: {} ", rideRequest);
         try {
-            rideRequestService.findNearestDriver(rideRequest.getRideId(), rideRequest.getPassengerLocation());
+            rideRequestService.findNearestDriver(rideRequest.getRiderId(), rideRequest.getPassengerLocation());
         } catch (Exception ex) {
             log.error("Error occurred :: ", ex);
         }
