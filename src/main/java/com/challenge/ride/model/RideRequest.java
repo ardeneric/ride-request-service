@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class RideRequest {
     @NotBlank
-    private int rideId;
+    private int riderId;
     @NotNull
     private Location passengerLocation;
 }
