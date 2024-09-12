@@ -22,7 +22,7 @@ The **Ride Request Service** is a microservice designed to handle ride requests,
   A more refined implementation will be to extend the search distance dynamically when no driver is found within X km to broaden the search.
 - riderId is a unique identifier assigned to each rider for making ride requests. This identifier is typically issued during the rider’s registration process.
 - To enhance response times, we cache search results for riders for up to 10 minutes, provided they remain in the same location during that period.
-- To avoid using outdated data, we do not retrieve rider search results older than 10 minutes, as riders and passengers are likely to be in motion and their locations may change.
+- To avoid using outdated data, we do not retrieve rider search results from the database older than 10 minutes, as riders and passengers are likely to be in motion and their locations may change.
 
 ## Prerequisites
 
